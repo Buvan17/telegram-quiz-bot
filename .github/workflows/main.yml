@@ -1,0 +1,21 @@
+name: Daily Quiz
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 3 * * *'
+    - cron: '30 13 * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Run bot
+        run: python3 quiz.py
